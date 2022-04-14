@@ -11,12 +11,10 @@ INSTALLATION:
 
 5) 
 Contracts folder: will contain our contracts
-
 Migrations folder: will contain a Node.js file that will explain truffle how to deploy smart contract to the blockchain.
-
 Test folder: will contain test files to test our smart contracts. The test files can be written in Node.js or in Solidity. 
-
 Truffle-config.js: in this file we define deployment network for deploying smart contract. This file will allow us to make custom configuration such as which solidity version we would like to use or which network we would like to deploy our smart contract. 
+
 6) Create your smart contracts inside the Contracts folder.
 
 7) Solidity version that you are using should be compatible with what is written in truffle-config.js file.
@@ -26,5 +24,14 @@ Go to truffle-config.js file, go down to "compilers" and then check the "version
 8) After finishing your contract, you can compile your contract. At the root of the project on CMD, type:
 "truffle compile"
 This command will compile the smart contracts inside the "contracts" folder.
+And it will also create a "build" folder.
 
+"Artifacts written to C:\...\project1\build\contracts" this is an important message.
+"solc: 0.8.13+commit..." this is the version of solidity that is used for the compilation. 
 
+9) Inside the build folder, go to JSON file of your smart contract. 3 keys are important there:
+First key: "abi" - this part helps our frontend to interact with our smart contract.
+Second key: "compile" - shows us which version is used to compile our smart contract.
+Third key: "networks" - this will be empty now. But after we deploy it will change.
+
+10) Make sure that your contracts pragma statements are the same solidity version. 
