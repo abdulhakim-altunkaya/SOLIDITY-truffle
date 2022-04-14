@@ -1,0 +1,30 @@
+TRUFFLE 
+	Compilation
+	Deployment: Ganache, an isolated blockchain
+	Testing: Mocha
+
+INSTALLATION: 
+1) Make sure you have node.js installed on your computer.
+2) open terminal, and doesn’t matter where you are because we will download truffle globally: “npm install -g truffle”
+3) Then you can check if you installed truffle: “truffle version”
+4) Then to create a truffle project, go to any place you like to place your project folder and type: “truffle init”
+
+5) 
+Contracts folder: will contain our contracts
+
+Migrations folder: will contain a Node.js file that will explain truffle how to deploy smart contract to the blockchain.
+
+Test folder: will contain test files to test our smart contracts. The test files can be written in Node.js or in Solidity. 
+
+Truffle-config.js: in this file we define deployment network for deploying smart contract. This file will allow us to make custom configuration such as which solidity version we would like to use or which network we would like to deploy our smart contract. 
+6) Create your smart contracts inside the Contracts folder.
+
+7) Solidity version that you are using should be compatible with what is written in truffle-config.js file.
+
+Go to truffle-config.js file, go down to "compilers" and then check the "version".
+
+8) After finishing your contract, you can compile your contract. At the root of the project on CMD, type:
+"truffle compile"
+This command will compile the smart contracts inside the "contracts" folder.
+
+
