@@ -1,3 +1,5 @@
+const HDWalletProvider = require("@truffle/HDwallet-provider");
+const privateKeys = ["0xb7be9b33672f7b2387e7a50d60c9526d6368eb4dc38251d0a705985c0ddec627"];
 
 /**
  * Use this file to configure your truffle project. It's seeded with some
@@ -36,6 +38,38 @@ module.exports = {
    */
 
   networks: {
+    eth: {
+      provider : () => new HDWalletProvider(
+        privateKeys,
+          'ETH_NODE_URL' //to get this url, we need create a project on infura
+      ),
+      netword_id: 1,
+      skipDryRun: true
+    },
+    ethTestNet: {
+      provider : () => new HDWalletProvider(
+        privateKeys,
+          'ETH_NODE_URL'
+      ),
+      netword_id: 5,
+      skipDryRun: true
+    },
+    bsc: {
+      provider : () => new HDWalletProvider(
+        privateKeys,
+          'https://bsc-dataseed.binance.org/' //but for BSC we dont need to create a project on infura
+      ),
+      netword_id: 56,
+      skipDryRun: true
+    },
+    bscTestNet: {
+      provider : () => new HDWalletProvider(
+        privateKeys,
+          'https://data-seed-prebsc-1-s1.binance.org:8545/'
+      ),
+      netword_id: 97,
+      skipDryRun: true
+    }
     // Useful for testing. The `development` name is special - truffle uses it by default
     // if it's defined here and no other network is specified at the command line.
     // You should run a client (like ganache-cli, geth or parity) in a separate terminal

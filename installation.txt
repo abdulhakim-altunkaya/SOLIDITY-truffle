@@ -46,4 +46,79 @@ test file:
 
 DEPLOYING SMART CONTRACTS 
 12) Now we can deploy our contract to the Ganache Local Development Blockchain.
-13) We should create a migrations file. Go to migrations folder, then 
+
+13) We should create a migrations file. Go to migrations folder, and create a migrations file.
+This file should start with 2. Because truffle will execute them in order. Name:  2_deploy_contracts.js 
+For basic content, you can copy paste from 1_initial_migrations.js
+In place of "migrations", copy paste your smart contract file name.
+
+14) If you have any arguments for the constructor, you can pass them inside deployer function. Such as:
+deployer.deploy(SimpleStorage, "asdf", "fwefwef")
+
+15) Once we finish that, we can type: *******"truffle develop"******* it will start a ganache local development blockchain 
+-Accounts: these 10 accounts have 10 ethers inside each
+-Private keys: Above accounts private keys
+-Mnemonics: the keys used to create above accounts(? what does this mean?)
+
+16) the prompt that appears is connected to this blockchain. Here in prompt you can type: 
+*****"migrate --reset"**** and this command will deploy my contracts.
+
+PUBLIC TESTNET
+17) We can also deploy our contract on a public test net. For that we will need some
+fake ethers from a faucet. 
+
+18) Copy a contract address (after step 15, you will have 10 accounts in your CMD. Choose any of them)
+
+19) Go to Binance Smart Chain TestNet faucet and copy-paste the address
+
+20) Then go to "Binance Smart Chain TestNet Explorer" and copy-paste the address, just see if address has BNB
+
+21) Then go to CMD and copy the private key for that address
+
+22) Then exit the CMD with ctrl+c 
+
+23) on CMD, download HDWalletProvider: npm install @truffle/hdwallet-provider 
+I downloaded it inside project just in case. 
+HDWalletProvider allows to sign transactions on public and test nets.
+
+24) Then go to truffle-config.js  file and add these code to the beginning:
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+const privateKeys = ["0x...private keys...."]
+Dont forget to copy paste your private keys above.
+
+25) then head down networks section and copy paste these parts inside it:
+    eth: {
+      provider : () => new HDWalletProvider(
+        privateKeys,
+          'ETH_NODE_URL' //to get this url, we need create a project on infura
+      ),
+      netword_id: 1,
+      skipDryRun: true
+    },
+    ethTestNet: {
+      provider : () => new HDWalletProvider(
+        privateKeys,
+          'ETH_NODE_URL'
+      ),
+      netword_id: 5,
+      skipDryRun: true
+    },
+    bsc: {
+      provider : () => new HDWalletProvider(
+        privateKeys,
+          'https://bsc-dataseed.binance.org/' //but for BSC we dont need to create a project on infura
+      ),
+      netword_id: 56,
+      skipDryRun: true
+    },
+    bscTestNet: {
+      provider : () => new HDWalletProvider(
+        privateKeys,
+          'https://data-seed-prebsc-1-s1.binance.org:8545/'
+      ),
+      netword_id: 97,
+      skipDryRun: true
+    }
+
+26)But of course, we will not need all of the networks up. We will just need bscTestNet.
+open cmd and copy paste: truffle migrate --reset --network bscTestNet

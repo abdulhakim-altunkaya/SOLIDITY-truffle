@@ -9,7 +9,7 @@ contract SimpleStorage {
         data = _data;
     }
 
-    function readData() external view returns(uint) {
+    function readData() external view returns(uint){
         return data;
     }
 }
