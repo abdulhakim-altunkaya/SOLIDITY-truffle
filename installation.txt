@@ -1,6 +1,6 @@
 TRUFFLE 
 	Compilation
-	Deployment: Ganache, an isolated blockchain
+	Deployment: Ganache, an isolated local development blockchain
 	Testing: Mocha
 
 INSTALLATION: 
@@ -22,7 +22,7 @@ Truffle-config.js: in this file we define deployment network for deploying smart
 Go to truffle-config.js file, go down to "compilers" and then check the "version".
 
 8) After finishing your contract, you can compile your contract. At the root of the project on CMD, type:
-"truffle compile"
+*****"truffle compile"******
 This command will compile the smart contracts inside the "contracts" folder.
 And it will also create a "build" folder.
 
@@ -35,3 +35,15 @@ Second key: "compile" - shows us which version is used to compile our smart cont
 Third key: "networks" - this will be empty now. But after we deploy it will change.
 
 10) Make sure that your contracts pragma statements are the same solidity version. 
+
+11) Once you deploy your smart contract, you cannot modify it. Thats why it is important
+that you fix all bugs by testing before. Thats why test folder is important. To create a 
+test file:
+-create a .js file with the same name of your smart contract file.
+-use "artifact" to reach your smart contract.
+- use "it" and "assert" syntax of Mocha to make a test.
+- Then test it: ****"truffle test"********
+
+DEPLOYING SMART CONTRACTS 
+12) Now we can deploy our contract to the Ganache Local Development Blockchain.
+13) We should create a migrations file. Go to migrations folder, then 
