@@ -7,6 +7,11 @@ INSTALLATION:
 1) Make sure you have node.js installed on your computer.
 2) open terminal, and doesn’t matter where you are because we will download truffle globally: “npm install -g truffle”
 3) Then you can check if you installed truffle: “truffle version”
+
+23) DO THIS BEFORE STEP 4:  on CMD, download HDWalletProvider: npm install @truffle/hdwallet-provider 
+You need to download it inside the project folder.. 
+HDWalletProvider allows to sign transactions on public and test nets.
+
 4) Then to create a truffle project, go to any place you like to place your project folder and type: “truffle init”
 
 5) 
@@ -77,9 +82,7 @@ fake ethers from a faucet.
 
 22) Then exit the CMD with ctrl+c 
 
-23) on CMD, download HDWalletProvider: npm install @truffle/hdwallet-provider 
-I downloaded it inside project just in case. 
-HDWalletProvider allows to sign transactions on public and test nets.
+
 
 24) Then go to truffle-config.js  file and add these code to the beginning:
 const HDWalletProvider = require("@truffle/hdwallet-provider");
@@ -87,38 +90,59 @@ const privateKeys = ["0x...private keys...."]
 Dont forget to copy paste your private keys above.
 
 25) then head down networks section and copy paste these parts inside it:
+
     eth: {
-      provider : () => new HDWalletProvider(
+      provider: () => new HDWalletProvider(
         privateKeys,
-          'ETH_NODE_URL' //to get this url, we need create a project on infura
+        'ETH_NODE_URL'
       ),
-      netword_id: 1,
+      network_id: 1,
       skipDryRun: true
     },
-    ethTestNet: {
-      provider : () => new HDWalletProvider(
+
+    ethTestnet: {
+      provider: () => new HDWalletProvider(
         privateKeys,
-          'ETH_NODE_URL'
+        'ETH_NODE_URL'
       ),
-      netword_id: 5,
+      network_id: 5,
       skipDryRun: true
     },
+
     bsc: {
-      provider : () => new HDWalletProvider(
+      provider: () => new HDWalletProvider(
         privateKeys,
-          'https://bsc-dataseed.binance.org/' //but for BSC we dont need to create a project on infura
+        'https://bsc-dataseed.binance.org/'
       ),
-      netword_id: 56,
+      network_id: 56,
       skipDryRun: true
     },
-    bscTestNet: {
-      provider : () => new HDWalletProvider(
+
+    bscTestnet: {
+      provider: () => new HDWalletProvider(
         privateKeys,
-          'https://data-seed-prebsc-1-s1.binance.org:8545/'
+        'https://data-seed-prebsc-1-s1.binance.org:8545/'
       ),
-      netword_id: 97,
+      network_id: 97,
       skipDryRun: true
     }
 
-26)But of course, we will not need all of the networks up. We will just need bscTestNet.
-open cmd and copy paste: truffle migrate --reset --network bscTestNet
+26)But of course, we will not need all of the networks up. We will just need bscTestnet.
+open cmd and copy paste: truffle migrate --reset --network bscTestnet
+
+27) then copy transaction hash, and go to BSC Scan for Testnet, paste it
+
+28) Now we can interact with the smart contract by connecting truffle console to the public testnet by typing in CMD:
+truffle console --network bscTestnet
+Then give following answers to the prompt
+(bscTestnet) storage = await SimpleStorage.deployed() // get a pointer to our deployed smart contract
+(bscTestnet) storage.address // This is the contract address of SimpleStorage.sol after we deployed it to BSC Testnet
+(bscTestnet) await storage.updateData(10) //We will call updateData function to make a transaction.
+Then it will print a transaction receipt.
+copy the transaction hash, then go to BSC Scan, paste it to see more info regarding transaction.
+
+Now we can read the data (from the transaction?)
+(bscTestnet) data = await storage.readData()
+(bscTestnet) data.toString()
+
+29) You can do step 28 also for truffle develop

@@ -1,0 +1,32 @@
+1) When you develop a dapp, you will need ethereum clients.
+parity: written in Rust
+geth: written in Go
+
+2) Instead of ethereum clients above, you can use Ganache. An ethereum client created for developers.
+
+3) With Ganache, you have only one node in your ethereum network. It is simple.
+
+4) You dont need to setup any miner. All the transactions you send to Ganache will be mined instantly.
+
+5) Ganache blockchain is local. It is not connected to Ethereum mainnet. 
+
+6) Ganache will provide you funded and unlocked 10 accounts. unlocked means you do not need their private keys.
+
+7) To change the default port number and host type on CMD: 
+ganache-cli -h 127.0.0.1 -p 5000
+
+here we made localhost as host and 5000 as port number.
+
+8) If you want to use the previous hard forks of ethereum, you can do it:
+ganache-cli -k constantinople
+
+hardforks means like "version" i guess.
+
+8.1) You can also specify the network  id with hardforks
+ganache-cli -k constantinople -i 700
+
+ganache-cli -k constantinople           : specify hardforks
+ganache-cli -k constantinople -i 700    : specify chain/network id
+ganache-cli -k constantinople -g 2000000        : specify default gas price
+ganache-cli -k constantinople -l 0x45UI         : specify block gas limit. (not transaction limit)
+ganache-cli -k constantinople -b 15             : specify block time
