@@ -1,0 +1,5 @@
+Proof of Work:
+Mining - Miners
+
+Proof of Stake:
+Minting/Forging - Validator

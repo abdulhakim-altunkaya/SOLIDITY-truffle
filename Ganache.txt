@@ -30,3 +30,14 @@ ganache-cli -k constantinople -i 700    : specify chain/network id
 ganache-cli -k constantinople -g 2000000        : specify default gas price
 ganache-cli -k constantinople -l 0x45UI         : specify block gas limit. (not transaction limit)
 ganache-cli -k constantinople -b 15             : specify block time
+ganache-cli -k constantinople -t 15             : specify when the blockchain start, date will be in ISO format
+ganache-cli -k constantinople -a 5              : specify the number of accounts. Default is 10
+ganache-cli -k constantinople -e 1000           : specify the amount of ether in those accounts. Default is 100
+
+ganache-cli -k constantinople -m "apple iron soil... 12 words"    : specify the same seed phrase 
+for all addresses when you start ganache
+ganache-cli -k constantinople -s "apple iron soil... 12 words"    : specify the source of randomness
+(I dont know the difference between this the one above)
+
+There are more ganache-cli commands. You can check documentation. 
+
